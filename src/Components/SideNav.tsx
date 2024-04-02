@@ -19,6 +19,7 @@ import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import { useNavigate } from 'react-router-dom';
+import { useAppStore } from '../appStore';
 
 const drawerWidth = 240;
 
@@ -77,79 +78,81 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 
 export default function SideNav() {
   const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
-
+ // const [open, setOpen] = React.useState(false);
+  const updateOpen = useAppStore((state)=> state.updateOpen);
+  const dOpen = useAppStore((state)=> state.dOpen);
+  const isOpen = typeof dOpen === 'boolean' ? dOpen : false;
   const navigate = useNavigate();
 
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
       
-      <Drawer variant="permanent" open={open}>
-        <DrawerHeader>
-          <IconButton onClick={() => setOpen(!open)}>
+      <Drawer variant="permanent" open={isOpen}>
+        {/* <DrawerHeader>
+          <IconButton onClick={() => setOpen(!isOpen)}>
             {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
           </IconButton>
-        </DrawerHeader>
+        </DrawerHeader> */}
         <List>
             <ListItem disablePadding sx={{ display: 'block' }} onClick={() => navigate('/')}>
               <ListItemButton
                 sx={{
                   minHeight: 48,
-                  justifyContent: open ? 'initial' : 'center',
+                  justifyContent: isOpen ? 'initial' : 'center',
                   px: 2.5,
                 }}
               >
                 <ListItemIcon
                   sx={{
                     minWidth: 0,
-                    mr: open ? 3 : 'auto',
+                    mr: isOpen ? 3 : 'auto',
                     justifyContent: 'center',
                   }}
                 >
                  <MailIcon />
                 </ListItemIcon>
-                <ListItemText primary="Home" sx={{ opacity: open ? 1 : 0 }} />
+                <ListItemText primary="Home" sx={{ opacity: isOpen ? 1 : 0 }} />
               </ListItemButton>
             </ListItem>
             <ListItem disablePadding sx={{ display: 'block' }}  onClick={() => navigate('/about')}>
               <ListItemButton
                 sx={{
                   minHeight: 48,
-                  justifyContent: open ? 'initial' : 'center',
+                  justifyContent: isOpen ? 'initial' : 'center',
                   px: 2.5,
                 }}
               >
                 <ListItemIcon
                   sx={{
                     minWidth: 0,
-                    mr: open ? 3 : 'auto',
+                    mr: isOpen ? 3 : 'auto',
                     justifyContent: 'center',
                   }}
                 >
                  <MailIcon />
                 </ListItemIcon>
-                <ListItemText primary="About" sx={{ opacity: open ? 1 : 0 }} />
+                <ListItemText primary="About" sx={{ opacity: isOpen ? 1 : 0 }} />
               </ListItemButton>
             </ListItem>
             <ListItem disablePadding sx={{ display: 'block' }} onClick={() => navigate('/settings')}>
               <ListItemButton
                 sx={{
                   minHeight: 48,
-                  justifyContent: open ? 'initial' : 'center',
+                  justifyContent: isOpen ? 'initial' : 'center',
                   px: 2.5,
                 }}
               >
                 <ListItemIcon
                   sx={{
                     minWidth: 0,
-                    mr: open ? 3 : 'auto',
+                    mr: isOpen ? 3 : 'auto',
                     justifyContent: 'center',
                   }}
                 >
                  <MailIcon />
                 </ListItemIcon>
-                <ListItemText primary="Settings" sx={{ opacity: open ? 1 : 0 }} />
+                <ListItemText primary="Settings" sx={{ opacity: isOpen ? 1 : 0 }} />
               </ListItemButton>
             </ListItem>
         </List>

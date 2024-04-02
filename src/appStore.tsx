@@ -1,17 +1,17 @@
-import React from 'react'
-import create, { StateCreator, GetState, SetState, StoreApi } from 'zustand'
-import { persist } from "zustand/middleware";
+import create from 'zustand';
 
-type AppState = {
-    dopen: boolean;
-    updateOpen: (dopen: boolean) => void;
+import { persist } from 'zustand/middleware';
+
+interface AppStoreState {
+  dOpen: boolean;
+  updateOpen: (newDOpen: boolean) => void;
 }
 
-const appStore: StateCreator<AppState> = (set: SetState<AppState>, get: GetState<AppState>, api: StoreApi<AppState>) => ({
-    dopen: true,
-    updateOpen: (dopen: boolean) => set({ dopen }),
+const appStore = (set: (state: AppStoreState) => void): AppStoreState => ({
+  dOpen: true,
+  updateOpen: (newDOpen: boolean) => set({ ...appStore(set), dOpen: newDOpen }),
 });
 
-const persistedAppStore = persist(appStore, { name: "my_app_store" });
+const persistedAppStore = persist<AppStoreState>(appStore, { name: 'my_app' });
 
 export const useAppStore = create(persistedAppStore);

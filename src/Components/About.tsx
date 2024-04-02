@@ -1,15 +1,17 @@
 import React from 'react'
 import SideNav from './SideNav'
 import { Box, Typography } from '@mui/material'
+import Navbar from './Navbar'
 
 export default function About() {
     return (
         <>
+            <Navbar/>
             <Box sx={{ display: 'flex' }}>
                 <SideNav />
-                <h1>About</h1>
-                
+                <div>About</div>
             </Box>
+
 
 
 
