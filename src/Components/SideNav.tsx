@@ -87,7 +87,7 @@ export default function SideNav() {
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      
+      <Box height={30}/>
       <Drawer variant="permanent" open={isOpen}>
         <DrawerHeader>
           <IconButton onClick={() => updateOpen(!isOpen)}>

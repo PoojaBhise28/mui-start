@@ -11,7 +11,7 @@ export default function Settings() {
                 <Box sx={{ display: 'flex' }}>
                     <SideNav />
                     <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-                        <div>Setting</div>
+                        <h1>Setting</h1>
                     </Box>
                 
             </Box>
