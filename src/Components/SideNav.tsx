@@ -89,11 +89,11 @@ export default function SideNav() {
       <CssBaseline />
       
       <Drawer variant="permanent" open={isOpen}>
-        {/* <DrawerHeader>
-          <IconButton onClick={() => setOpen(!isOpen)}>
+        <DrawerHeader>
+          <IconButton onClick={() => updateOpen(!isOpen)}>
             {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
           </IconButton>
-        </DrawerHeader> */}
+        </DrawerHeader>
         <List>
             <ListItem disablePadding sx={{ display: 'block' }} onClick={() => navigate('/')}>
               <ListItemButton
